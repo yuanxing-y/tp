@@ -327,7 +327,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. UniSave shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
       
 **Use case: Add a description to an expense**
 
@@ -359,7 +359,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. UniSave shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
       
 
     Use case ends.
