@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 import seedu.address.model.expense.Budget;
 import seedu.address.model.expense.Currency;
+import seedu.address.model.expense.Date;
 
 /**
  * Show the current available budget.
@@ -10,7 +11,8 @@ import seedu.address.model.expense.Currency;
 public class ShowBudgetCommand extends Command {
 
     public static final String COMMAND_WORD = "showBudget";
-    public static final String MESSAGE_BUDGET = "Current budget is: %s %s\n";
+    public static final String MESSAGE_BUDGET = "Latest budget is: %s %s,";
+    public static final String SET_TIME = " set on %s.\n";
     public static final String MESSAGE_REMAINING = "Remaining budget is: %s %s\n";
     public static final String MESSAGE_SETNEW = "Your remaining budget is %s %s, "
             + "seems like you're broke.\n"
@@ -26,7 +28,8 @@ public class ShowBudgetCommand extends Command {
         Budget budget = model.getExpenseBookBudget();
         Budget remaining = model.getExpenseBookRemaining();
         Currency currency = model.getExpenseBookCurrency();
-        String budgetMsg = String.format(MESSAGE_BUDGET, budget, currency);
+        Date setDate = new Date("2020-11-21");
+        String budgetMsg = String.format(MESSAGE_BUDGET + SET_TIME, budget, currency, setDate);
         if (model.getExpenseBookRemaining().isEmpty()) {
             String setNew = String.format(MESSAGE_SETNEW, remaining, currency);
             return new CommandResult(budgetMsg + setNew);

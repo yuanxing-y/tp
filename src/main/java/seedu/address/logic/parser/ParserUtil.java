@@ -102,7 +102,7 @@ public class ParserUtil {
      */
     public static Currency parseCurrency(String currency) throws ParseException {
         requireNonNull(currency);
-        return new Currency(currency.trim());
+        return new Currency(currency.trim().toUpperCase());
     }
 
     /**

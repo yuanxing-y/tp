@@ -33,16 +33,16 @@ public class AddExpenseCommandParser implements Parser<AddExpenseCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_AMOUNT, PREFIX_CATEGORY, PREFIX_DATE, PREFIX_DESCRIPTION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_AMOUNT, PREFIX_CATEGORY, PREFIX_DATE, PREFIX_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_AMOUNT, PREFIX_CATEGORY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddExpenseCommand.MESSAGE_USAGE));
         }
 
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
         Currency currency = ExpenseBook.currency();
-        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).orElse("0"));
         Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
-        Description description = ParserUtil.parseExpenseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        Description description = ParserUtil.parseExpenseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).orElse(""));
         Expense expense = new Expense(amount, currency, date, category, description);
         return new AddExpenseCommand(expense);
     }
