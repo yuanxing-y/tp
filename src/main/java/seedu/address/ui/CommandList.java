@@ -1,10 +1,9 @@
-package seedu.address.model.expense;
+package seedu.address.ui;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommandList {
-
     public static final String ADD_EXPENSE = "ADD EXPENSE COMMAND";
     public static final String ADD_EXPENSE_USAGE = "ADD expense, date and time filed are optional";
     public static final String ADD_EXPENSE_FORMAT = "add a/AMOUNT c/CATEGORY [t/DATE] [d/DESCRIPTION]";
@@ -13,10 +12,6 @@ public class CommandList {
     public static final String LIST_EXPENSE_USAGE = "LIST all expenses";
     public static final String LIST_EXPENSE_FORMAT = "list";
     public static final String LIST_EXPENSE_EXAMPLE = "list";
-    public static final String LIST_BY_CATEGORY = "LIST BY CATEGORY";
-    public static final String LIST_BY_CATEGORY_USAGE = "LIST expenses of a category";
-    public static final String LIST_BY_CATEGORY_FORMAT = "filter-c CATEGORY";
-    public static final String LIST_BY_CATEGORY_EXAMPLE = "filter-c entertainment";
     public static final String DELETE = "DELETE";
     public static final String DELETE_USAGE = "delete a specified expense";
     public static final String DELETE_FORMAT = "delete INDEX";
@@ -41,10 +36,6 @@ public class CommandList {
     public static final String SET_BUDGET_USAGE = "set the budget";
     public static final String SET_BUDGET_FORMAT = "set-b AMOUNT";
     public static final String SET_BUDGET_EXAMPLE = "set-b 500.0";
-    public static final String SHOW_BUDGET = "SHOW BUDGET";
-    public static final String SHOW_BUDGET_USAGE = "show the budget";
-    public static final String SHOW_BUDGET_FORMAT = "showbudget AMOUNT";
-    public static final String SHOW_BUDGET_EXAMPLE = "showbudget 500.0";
     public static final String EXIT = "EXIT";
     public static final String EXIT_USAGE = "exit from the application";
     public static final String EXIT_FORMAT = "exit";
@@ -116,14 +107,12 @@ public class CommandList {
     public String getExample() {
         return this.example;
     }
-    public static List<CommandList> getCommandList() {
+    public static List<CommandList> getComandList() {
         List<CommandList> list = new ArrayList<>();
         CommandList addCommand = new CommandList(ADD_EXPENSE, ADD_EXPENSE_USAGE,
                 ADD_EXPENSE_FORMAT, ADD_EXPENSE_EXAMPLE);
         CommandList listCommand = new CommandList(LIST_EXPENSE, LIST_EXPENSE_USAGE,
                 LIST_EXPENSE_FORMAT, LIST_EXPENSE_EXAMPLE);
-        CommandList listByCategoryCommand = new CommandList(LIST_BY_CATEGORY, LIST_BY_CATEGORY_USAGE,
-                LIST_BY_CATEGORY_FORMAT, LIST_BY_CATEGORY_EXAMPLE);
         CommandList deleteCommand = new CommandList(DELETE, DELETE_USAGE,
                 DELETE_FORMAT, DELETE_EXAMPLE);
         CommandList viewCommand = new CommandList(VIEW, VIEW_USAGE,
@@ -136,8 +125,6 @@ public class CommandList {
                 DELETE_DESCRIPTION_FORMAT, DELETE_DESCRIPTION_EXAMPLE);
         CommandList setBudgeCommand = new CommandList(SET_BUDGET, SET_BUDGET_USAGE,
                 SET_BUDGET_FORMAT, SET_BUDGET_EXAMPLE);
-        CommandList showBudgeCommand = new CommandList(SHOW_BUDGET, SHOW_BUDGET_USAGE,
-                SHOW_BUDGET_FORMAT, SHOW_BUDGET_EXAMPLE);
         CommandList exitCommand = new CommandList(EXIT, EXIT_USAGE,
                 EXIT_FORMAT, EXIT_EXAMPLE);
         CommandList showStatisticCommand = new CommandList(SHOW_STATISTIC, SHOW_STATISTIC_USAGE,
@@ -174,10 +161,8 @@ public class CommandList {
         list.add(filterByTimeCommand);
         list.add(filterByDescriptionCommand);
         list.add(helpCommand);
-        list.add(listByCategoryCommand);
         list.add(listCommand);
         list.add(setBudgeCommand);
-        list.add(showBudgeCommand);
         list.add(showCurrencyCodeCommand);
         list.add(showStatisticCommand);
         list.add(sortByAmountCommand);

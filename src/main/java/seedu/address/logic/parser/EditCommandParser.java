@@ -12,10 +12,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditExpenseDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.expense.Amount;
-import seedu.address.model.expense.Category;
-import seedu.address.model.expense.Date;
-import seedu.address.model.expense.Description;
 
 public class EditCommandParser implements Parser<EditCommand> {
     /**
@@ -34,11 +30,6 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), ive);
         }
-        Amount amount = ParserUtil.parseEditAmount(argMultimap.getValue(PREFIX_AMOUNT).orElse(""));
-        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).orElse(""));
-        Category category = ParserUtil.parseEditCategory(argMultimap.getValue(PREFIX_CATEGORY).orElse(""));
-        Description description = ParserUtil.parseExpenseDescription(
-                argMultimap.getValue(PREFIX_DESCRIPTION).orElse(""));
 
         EditExpenseDescriptor editExpenseDescriptor = new EditExpenseDescriptor();
         if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
@@ -59,6 +50,5 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         return new EditCommand(index, editExpenseDescriptor);
-        //return new EditCommand(index, amount, category, date, description);
     }
 }

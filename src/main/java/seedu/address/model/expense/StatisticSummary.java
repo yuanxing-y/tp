@@ -12,11 +12,9 @@ public class StatisticSummary {
         this.percentage = percentage;
         this.totalSpending = totalSpending;
     }
-
     public String getCategory() {
         return this.category;
     }
-
     public int getNumberOfExpense() {
         return this.numberOfExpense;
     }

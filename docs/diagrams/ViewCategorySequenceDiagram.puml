@@ -11,12 +11,14 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant ":ExpenseBook" as ExpenseBook MODEL_COLOR
+participant ":ExpenseList" as ExpenseList MODEL_COLOR
 end box
 
-[-> LogicManager : execute("viewCategory")
+[-> LogicManager : execute("view-c")
 activate LogicManager
 
-LogicManager -> ExpenseBookParser : parseCommand("viewCategory")
+LogicManager -> ExpenseBookParser : parseCommand("view-c")
 activate ExpenseBookParser
 
 create ViewCategoryCommandParser
@@ -48,8 +50,20 @@ deactivate ExpenseBookParser
 LogicManager -> ViewCategoryCommand : execute()
 activate ViewCategoryCommand
 
-ViewCategoryCommand -> Model : ViewCategoryCommand()
+ViewCategoryCommand -> Model : getCategoryLabels()
 activate Model
+
+Model -> ExpenseBook : getCategoryLabels()
+activate ExpenseBook
+
+ExpenseBook --> ExpenseList: getCategoryLabels()
+activate ExpenseList
+
+ExpenseList --> ExpenseBook
+deactivate ExpenseList
+
+ExpenseBook --> Model
+deactivate ExpenseBook
 
 Model --> ViewCategoryCommand
 deactivate Model

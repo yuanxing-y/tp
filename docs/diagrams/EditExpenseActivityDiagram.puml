@@ -1,0 +1,23 @@
+@startuml
+start
+:User executes an EditExpense command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command is valid])
+    :Instantiate an EditExpenseCommand;
+    :Execute EditExpenseCommand;
+    if () then ([the given fields are valid])
+        :Create a new Expense with the updated values. Set expense and update expense list;
+        :Update UI with the current expense and corresponding expense list;
+    else ([no fields are given for edit])
+        :throw an exception;
+        :update UI to notify user;
+    endif
+else ([else])
+    :throw an exception;
+    :update UI to notify user;
+endif
+stop
+@enduml

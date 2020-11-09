@@ -11,6 +11,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.expense.CurrencyFullName;
@@ -41,6 +43,13 @@ public class SupportedCurrencyTable extends UiPart<Stage> {
         super(FXML, root);
         label.setGraphic(tableView);
         label.setMinWidth(350);
+
+        getRoot().addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (KeyCode.Q == event.getCode()) {
+                getRoot().hide();
+            }
+        }
+        );
     }
 
     /**

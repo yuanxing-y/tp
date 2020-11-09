@@ -16,12 +16,13 @@ public class AddExpenseCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an expense to UniSave. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an expense to UniSave. \n"
+            + "Amount and Category field are compulsory while date and description are optional \n"
             + "Parameters: "
             + PREFIX_AMOUNT + "AMOUNT "
             + PREFIX_CATEGORY + "CATEGORY "
             + PREFIX_DATE + "DATE "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_DESCRIPTION + "DESCRIPTION \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_AMOUNT + "100 "
             + PREFIX_CATEGORY + "FOODBEVERAGE "
@@ -30,7 +31,6 @@ public class AddExpenseCommand extends Command {
 
 
     public static final String MESSAGE_SUCCESS = "New expense added: \n%1$s";
-    public static final String MESSAGE_DUPLICATE_EXPENSE = "This expense already exists in the expense list";
 
     private final Expense toAdd;
 

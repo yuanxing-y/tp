@@ -49,7 +49,7 @@ public class StatisticTable extends UiPart<Stage> {
         super(FXML, root);
         statisticTable.setGraphicTextGap(20.0);
         statisticTable.setGraphic(tableView);
-        statisticTable.setMinWidth(470);
+        statisticTable.setMinWidth(428);
 
         getRoot().addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
             if (KeyCode.Q == event.getCode()) {
@@ -65,9 +65,15 @@ public class StatisticTable extends UiPart<Stage> {
      * @param logic Takes in a logic object.
      */
     public StatisticTable(Logic logic) {
+
         this(new Stage());
         this.logic = logic;
         hasStats = true;
+        category.setCellValueFactory(new PropertyValueFactory<>("category"));
+        numberOfExpense.setCellValueFactory(new PropertyValueFactory<>("numberOfExpense"));
+        percentage.setCellValueFactory(new PropertyValueFactory<>("percentage"));
+        totalSpending.setCellValueFactory(new PropertyValueFactory<>("totalSpending"));
+        constructTable();
     }
 
     /**
@@ -82,10 +88,7 @@ public class StatisticTable extends UiPart<Stage> {
      */
     public void constructTable() {
         if (hasStats) {
-            category.setCellValueFactory(new PropertyValueFactory<>("category"));
-            numberOfExpense.setCellValueFactory(new PropertyValueFactory<>("numberOfExpense"));
-            percentage.setCellValueFactory(new PropertyValueFactory<>("percentage"));
-            totalSpending.setCellValueFactory(new PropertyValueFactory<>("totalSpending"));
+            ObservableList<StatisticSummary> list = FXCollections.observableArrayList();
             List<StatisticSummary> statisticSummaryList = logic.getExpenseBook().getStatisticTable();
             for (int i = 0; i < statisticSummaryList.size(); i = i + 1) {
                 list.add(statisticSummaryList.get(i));

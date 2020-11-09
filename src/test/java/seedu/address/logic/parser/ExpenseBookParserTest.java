@@ -25,11 +25,11 @@ public class ExpenseBookParserTest {
 
     @Test
     public void parseCommand_description() throws Exception {
-        final Description remark = new Description("Some remark.");
+        final Description description = new Description("Some description.");
         AddDescriptionCommand command = (AddDescriptionCommand) parser.parseCommand(
                 AddDescriptionCommand.COMMAND_WORD + " "
-                        + INDEX_FIRST_EXPENSE.getOneBased() + " " + PREFIX_DESCRIPTION + remark.value);
-        assertEquals(new AddDescriptionCommand(INDEX_FIRST_EXPENSE, remark), command);
+                        + INDEX_FIRST_EXPENSE.getOneBased() + " " + PREFIX_DESCRIPTION + description.value);
+        assertEquals(new AddDescriptionCommand(INDEX_FIRST_EXPENSE, description), command);
     }
 
     @Test

@@ -1,29 +1,17 @@
 @startuml
 start
-:User executes a view command;
+:User executes a View Command;
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([command word is a valid view command word])
-    :Create an ViewCommandParser;
-    :ViewCommandParser parses the rest of the user input;
+if () then ([command word is a valid ViewCommand command word])
+    :Instantiate an ViewCommand;
+    :Execute ViewCommand;
     if () then ([the input index is valid])
-        :Create a new ViewCommand;
-        if () then ([index is within the range of the expense list])
-            :ViewCommand executes;
-        else ([else])
-            :throw an exception;
-            :update UI to update user;
-        endif
-
-'        if () then ([the given index is valid])
-'            :Create a new Description and add it to the expense at the given index;
-'            :Update UI with the current expense and corresponding expense list;
-'        else ([else])
-'            :throw an exception;
-'            :update UI to notify user;
-'        endif
+        :Create a new Index;
+        :Get the expense at the position of the input index;
+        :Update UI with the selected expense;
     else ([else])
         :throw an exception;
         :update UI to notify user;

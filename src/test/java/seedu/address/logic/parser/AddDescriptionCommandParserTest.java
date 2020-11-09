@@ -31,4 +31,10 @@ class AddDescriptionCommandParserTest {
                 MESSAGE_INVALID_COMMAND_FORMAT, AddDescriptionCommand.MESSAGE_USAGE));
     }
 
+    @Test
+    public void parse_missingField_failure() {
+        assertParseFailure(parser, "1", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, AddDescriptionCommand.MESSAGE_ADD_DESCRIPTION_PREDIX_MISSING));
+    }
+
 }

@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.SortByTimeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.expense.Order;
 
 /**
  * Parses input arguments and creates a new SortByTimeCommand object
@@ -24,7 +25,9 @@ public class SortByTimeCommandParser implements Parser<SortByTimeCommand> {
         }
         assert !trimmedArgs.isEmpty();
 
-        return new SortByTimeCommand(args);
+        Order order = ParserUtil.parseOrder(trimmedArgs);
+
+        return new SortByTimeCommand(order);
     }
 
 }

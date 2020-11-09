@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExpenseBookParser" as ExpenseBookParser LOGIC_COLOR
+participant ":EditExpenseCommandParser" as EditExpenseCommandParser LOGIC_COLOR
+participant "command :EditExpenseCommand" as EditExpenseCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ExpenseList" as ExpenseList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 2 a/100")
+activate LogicManager
+
+LogicManager -> ExpenseBookParser : parseCommand("edit 2 a/100")
+activate ExpenseBookParser
+
+create EditExpenseCommandParser
+ExpenseBookParser -> EditExpenseCommandParser
+activate EditExpenseCommandParser
+
+EditExpenseCommandParser --> ExpenseBookParser
+deactivate EditExpenseCommandParser
+
+ExpenseBookParser -> EditExpenseCommandParser : parse("2 a/100")
+activate EditExpenseCommandParser
+
+create EditExpenseCommand
+EditExpenseCommandParser -> EditExpenseCommand
+activate EditExpenseCommand
+
+EditExpenseCommand --> EditExpenseCommandParser
+deactivate EditExpenseCommand
+
+EditExpenseCommandParser --> ExpenseBookParser
+deactivate EditExpenseCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditExpenseCommandParser -[hidden]-> ExpenseBookParser
+destroy EditExpenseCommandParser
+
+ExpenseBookParser --> LogicManager
+deactivate ExpenseBookParser
+
+LogicManager -> EditExpenseCommand : execute(model)
+activate EditExpenseCommand
+
+EditExpenseCommand -> Model : setExpense(target, editedExpense)
+activate Model
+
+Model --> ExpenseList: setExpense(target, editedExpense)
+activate ExpenseList
+
+ExpenseList --> Model
+deactivate ExpenseList
+
+
+Model --> EditExpenseCommand
+deactivate Model
+
+create CommandResult
+EditExpenseCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditExpenseCommand
+deactivate CommandResult
+
+EditExpenseCommand --> LogicManager
+deactivate EditExpenseCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

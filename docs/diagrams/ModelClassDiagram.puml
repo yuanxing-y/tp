@@ -22,6 +22,8 @@ Class Category
 Class Date
 Class Description
 Class ExpenseList
+Class Budget
+Class Currency
 }
 
 Class HiddenOutside #FFFFFF
@@ -36,6 +38,8 @@ ExpenseModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 ExpenseBook *--> "1" ExpenseList
+ExpenseBook *--> "1" Budget
+ExpenseBook *--> "1" Currency
 ExpenseList o--> "*" Expense
 Expense *--> Amount
 Expense *--> Date

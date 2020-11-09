@@ -45,8 +45,6 @@ public class JsonExpenseBookStorage implements ExpenseBookStorage {
     public Optional<ReadOnlyExpenseBook> readExpenseBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        logger.info("In jsonExpenseBook storage readExpenseBook");
-
         Optional<JsonSerializableExpenseBook> jsonExpenseBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableExpenseBook.class);
         if (!jsonExpenseBook.isPresent()) {

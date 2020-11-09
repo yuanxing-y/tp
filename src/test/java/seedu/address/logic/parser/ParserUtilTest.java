@@ -10,12 +10,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ParserUtilTest {
-    private static final String INVALID_TAG = "#friend";
-
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
-
-    private static final String WHITESPACE = " \t\r\n";
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {

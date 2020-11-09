@@ -18,7 +18,6 @@ import seedu.address.model.expense.Expense;
 class JsonAdaptedExpense {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Expense's %s field is missing!";
-    // private final Double amount;
     private final String amount;
     private final String currency;
     private final String date;
@@ -44,8 +43,7 @@ class JsonAdaptedExpense {
      * Converts a given {@code Expense} into this class for Jackson use.
      */
     public JsonAdaptedExpense(Expense source) {
-        amount = String.format("%.2f", source.getAmount().value);
-        // amount = source.getAmount().value;
+        amount = source.getAmount().value.toString();
         currency = source.getCurrency().currencyCode;
         date = source.getDate().date;
         category = source.getCategory().categoryName;

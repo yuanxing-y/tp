@@ -1,0 +1,26 @@
+@startuml
+start
+:User executes a ExchangeCommand;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command is valid])
+    :Instantiate an ExchangeCommand;
+    :Execute ExchangeCommand;
+    if () then ([the given CURRENCY_CODE is valid])
+        :CurrencyConverter calculate the exchange rate to input;
+        :Model exchange the whole ExpenseBook with the calculated exchange rate;
+        :Update UI with the new Currency and exchange rate from previous Currency;
+    else ([else])
+        :throw an exception;
+        :update UI to notify user;
+    endif
+    :Save ExpenseBook to
+    expenseBookStateList;
+else ([else])
+    :throw an exception;
+    :update UI to notify user;
+endif
+stop
+@enduml

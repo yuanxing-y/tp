@@ -1,0 +1,21 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+
+Class ExpenseBook
+
+Package Expense <<Rectangle>>{
+Class Expense
+Class Budget
+Class Currency
+
+ExpenseBook *--> "1" ExpenseList
+ExpenseBook *--> "1" Currency
+ExpenseBook *--> "1" Budget
+ExpenseList o--> "*" Expense
+
+
+@enduml

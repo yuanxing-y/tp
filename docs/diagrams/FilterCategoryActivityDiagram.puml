@@ -1,0 +1,6 @@
+@startuml
+(*)  --> "User execute filter expense by category command"
+--> "Ui shows the filtered expense list"
+--> "Ui shows command result"
+-->(*)
+@enduml

@@ -101,9 +101,6 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        //invalid date test not working
-        //change to category.message_constraints to pass checkstyle
-        //remember to change later
         String userInput1 = AMOUNT_DESC_BOOKS + CATEGORY_DESC_MOVIE
                 + " t/" + INVALID_DATE_1 + DESCRIPTION_DESC_BOOKS;
         assertParseFailure(parser, userInput1, Date.MESSAGE_CONSTRAINTS);
@@ -111,10 +108,6 @@ public class AddCommandParserTest {
         String userInput2 = AMOUNT_DESC_BOOKS + CATEGORY_DESC_BOOKS
                 + " t/" + INVALID_DATE_2 + DESCRIPTION_DESC_BOOKS;
         assertParseFailure(parser, userInput2, Date.MESSAGE_CONSTRAINTS);
-
-        //String userInput3 = " a/" + VALID_AMOUNT_BOOKS + " c/" + VALID_CATEGORY_BOOKS
-        //+ " D/" + INVALID_DATE_3 + " d/" + VALID_DESCRIPTION_BOOKS;
-        //assertParseFailure(parser, userInput3, Category.MESSAGE_CONSTRAINTS);
 
         String userInput4 = AMOUNT_DESC_BOOKS + " c/" + INVALID_CATEGORY_1
                 + " t/" + VALID_DATE_BOOKS + DESCRIPTION_DESC_BOOKS;

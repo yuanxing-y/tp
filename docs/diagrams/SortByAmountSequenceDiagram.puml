@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExpenseBookParser" as ExpenseBookParser LOGIC_COLOR
+participant ":SortByAmountCommandParser" as SortByAmountCommandParser LOGIC_COLOR
+participant "d:SortByAmountCommand" as SortByAmountCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ExpenseBook" as ExpenseBook MODEL_COLOR
+participant ":ExpenseList" as ExpenseList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("sort-a descending")
+activate LogicManager
+
+LogicManager -> ExpenseBookParser : parseCommand("sort-a descending")
+activate ExpenseBookParser
+
+create SortByAmountCommandParser
+ExpenseBookParser -> SortByAmountCommandParser
+activate SortByAmountCommandParser
+
+SortByAmountCommandParser --> ExpenseBookParser
+deactivate SortByAmountCommandParser
+
+ExpenseBookParser -> SortByAmountCommandParser : parse("descending")
+activate SortByAmountCommandParser
+
+create SortByAmountCommand
+SortByAmountCommandParser -> SortByAmountCommand
+activate SortByAmountCommand
+
+SortByAmountCommand --> SortByAmountCommandParser : s
+deactivate SortByAmountCommand
+
+SortByAmountCommandParser --> ExpenseBookParser : s
+deactivate SortByAmountCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortByAmountCommandParser -[hidden]-> ExpenseBookParser
+destroy SortByAmountCommandParser
+
+ExpenseBookParser --> LogicManager : s
+deactivate ExpenseBookParser
+
+LogicManager -> SortByAmountCommand : execute()
+activate SortByAmountCommand
+
+SortByAmountCommand -> Model : sortByDescendingAmount()
+activate Model
+
+Model -> ExpenseBook : sortByDescendingAmount()
+activate ExpenseBook
+
+ExpenseBook --> ExpenseList: sortByDescendingAmount()
+activate ExpenseList
+
+ExpenseList --> ExpenseBook
+deactivate ExpenseList
+
+ExpenseBook --> Model
+deactivate ExpenseBook
+
+Model --> SortByAmountCommand
+deactivate Model
+
+create CommandResult
+SortByAmountCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortByAmountCommand
+deactivate CommandResult
+
+SortByAmountCommand --> LogicManager : result
+deactivate SortByAmountCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

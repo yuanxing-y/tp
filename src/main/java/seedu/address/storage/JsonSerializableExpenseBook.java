@@ -2,14 +2,12 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ExpenseBook;
 import seedu.address.model.ReadOnlyExpenseBook;
@@ -23,7 +21,6 @@ import seedu.address.model.expense.Expense;
 @JsonRootName(value = "expensebook")
 class JsonSerializableExpenseBook {
     public static final String MESSAGE_DUPLICATE_EXPENSE = "Expense list contains duplicate expense(s).";
-    private static final Logger logger = LogsCenter.getLogger(JsonExpenseBookStorage.class);
     private final List<JsonAdaptedExpense> expenses = new ArrayList<>();
     private final Double budget;
     private final String dollarSign;
@@ -48,7 +45,6 @@ class JsonSerializableExpenseBook {
     public JsonSerializableExpenseBook(ReadOnlyExpenseBook source) {
         expenses.addAll(source.getExpenseList().stream().map(JsonAdaptedExpense::new).collect(Collectors.toList()));
         budget = source.getBudget().getValue();
-        logger.info("budget obtained at source.getBudget().getValue() is " + budget);
         dollarSign = source.getCurrency().currencyCode;
     }
 
@@ -58,10 +54,8 @@ class JsonSerializableExpenseBook {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public ExpenseBook toModelType() throws IllegalValueException {
-        logger.info("converting json adapted expense to model type");
         ExpenseBook expenseBook = new ExpenseBook();
         for (JsonAdaptedExpense jsonAdaptedExpense : expenses) {
-            logger.info("jsonAdaptedExpense： " + jsonAdaptedExpense);
             Expense expense = jsonAdaptedExpense.toModelType();
             if (expenseBook.hasExpense(expense)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EXPENSE);

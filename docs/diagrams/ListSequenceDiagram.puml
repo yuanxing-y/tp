@@ -9,7 +9,7 @@ end box
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ExpenseBookParser" as ExpenseBookParser LOGIC_COLOR
-participant "l:ListCommand" as ListCommand LOGIC_COLOR
+participant "command:ListExpenseCommand" as ListExpenseCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -20,37 +20,36 @@ end box
 [-> MainWindow
 activate MainWindow
 
-MainWindow -> LogicManager : execute(list)
+MainWindow -> LogicManager : execute("list")
 activate LogicManager
 
-LogicManager -> ExpenseBookParser : parseCommand(list)
+LogicManager -> ExpenseBookParser : parseCommand("list")
 activate ExpenseBookParser
 
-create ListCommand
-ExpenseBookParser -> ListCommand
-activate ListCommand
+create ListExpenseCommand
+ExpenseBookParser -> ListExpenseCommand
+activate ListExpenseCommand
 
-ListCommand --> ExpenseBookParser
-deactivate ListCommand
+ListExpenseCommand --> ExpenseBookParser
+deactivate ListExpenseCommand
 
-ExpenseBookParser --> LogicManager : l
-deactivate AddressBookParser
+ExpenseBookParser --> LogicManager : command
 
-LogicManager -> ListCommand : execute()
-activate ListCommand
+LogicManager -> ListExpenseCommand : execute(Model)
+activate ListExpenseCommand
 
-ListCommand -> Model : updateFilteredExpenseList()
+ListExpenseCommand -> Model : updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES)
 activate Model
 
-Model -> FilteredList : setPredicate(Predicate)
+Model -> FilteredList : setPredicate(PREDICATE_SHOW_ALL_EXPENSES)
 
-Model --> ListCommand
+Model --> ListExpenseCommand
 deactivate Model
 
-ListCommand --> LogicManager : result
-deactivate ListCommand
-ListCommand -[hidden]-> LogicManager : result
-destroy ListCommand
+ListExpenseCommand --> LogicManager : result
+deactivate ListExpenseCommand
+ListExpenseCommand -[hidden]-> LogicManager : result
+destroy ListExpenseCommand
 
 MainWindow <--LogicManager : result
 deactivate LogicManager

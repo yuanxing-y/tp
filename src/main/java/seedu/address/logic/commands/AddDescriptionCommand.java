@@ -26,9 +26,8 @@ public class AddDescriptionCommand extends Command {
             + "d/ [DESCRIPTION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "d/ Movie time.";
+    public static final String MESSAGE_ADD_DESCRIPTION_PREDIX_MISSING = "The description d/ field is missing. \n";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Description command not implemented yet";
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Description: %2$s";
     public static final String MESSAGE_ADD_DESCRIPTION_SUCCESS = "Added description to Expense: %1$s \n";
     public static final String MESSAGE_DELETE_DESCRIPTION_SUCCESS = "Removed description from Expense: %1$s \n";
     private final Index index;

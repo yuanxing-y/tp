@@ -20,8 +20,6 @@ if () then ([command is valid])
         :throw an exception;
         :update UI to notify user;
     endif
-    :Save ExpenseBook to
-    expenseBookStateList;
 else ([else])
     :throw an exception;
     :update UI to notify user;

@@ -37,7 +37,7 @@ public class DescContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different expenses -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 

@@ -5,20 +5,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.testutil.TypicalOrder;
+
 public class SortByAmountCommandTest {
     @Test
     public void equals() {
         SortByAmountCommand sortByAmountCommandDescending =
-                new SortByAmountCommand(" descending");
+                new SortByAmountCommand(TypicalOrder.DESCENDING_ORDER);
 
         SortByAmountCommand sortByAmountCommandDescendingCopy =
-                new SortByAmountCommand(" descending");
+                new SortByAmountCommand(TypicalOrder.DESCENDING_ORDER);
 
         SortByAmountCommand sortByAmountCommandAscending =
-                new SortByAmountCommand(" ascending");
+                new SortByAmountCommand(TypicalOrder.ASCENDING_ORDER);
 
         SortByAmountCommand sortByAmountCommandAscendingCopy =
-                new SortByAmountCommand(" ascending");
+                new SortByAmountCommand(TypicalOrder.ASCENDING_ORDER);
 
         // same object -> returns true
         assertTrue(sortByAmountCommandAscending.equals(sortByAmountCommandAscending));
@@ -30,6 +32,7 @@ public class SortByAmountCommandTest {
         assertTrue(sortByAmountCommandAscending.equals(sortByAmountCommandAscendingCopy));
 
         assertTrue(sortByAmountCommandDescending.equals(sortByAmountCommandDescendingCopy));
+
         // different types -> returns false
         assertFalse(sortByAmountCommandAscending.equals(1));
 

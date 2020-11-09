@@ -49,11 +49,4 @@ public class AddExpenseCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + AMOUNT_DESC_BOOKS + CATEGORY_DESC_BOOKS + DATE_DESC_BOOKS
                 + DESCRIPTION_DESC_BOOKS, new AddExpenseCommand(expectedPerson));
     }
-
-    //@Test
-    //public void parse_invalidValue_failure() {
-    //invalid Amount
-    //    assertParseFailure(parser, AMOUNT_DESC_BOOKS + CATEGORY_DESC_BOOKS + INVALID_DATE_DESC
-    //            + DESCRIPTION_DESC_BOOKS, Date.MESSAGE_CONSTRAINTS);
-    //}
 }

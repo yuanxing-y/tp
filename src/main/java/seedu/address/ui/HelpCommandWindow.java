@@ -9,9 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.expense.CommandList;
 
 public class HelpCommandWindow extends UiPart<Stage> {
     private static final String FXML = "HelpCommandWindow.fxml";
@@ -38,7 +39,14 @@ public class HelpCommandWindow extends UiPart<Stage> {
         super(FXML, root);
         helpCommandWindow.setGraphic(tableView);
         helpCommandWindow.setMinWidth(1205);
-        helpCommandWindow.setMinHeight(580);
+        helpCommandWindow.setMinHeight(530);
+
+        getRoot().addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (KeyCode.Q == event.getCode()) {
+                getRoot().hide();
+            }
+        });
+
     }
 
     /**
@@ -56,7 +64,7 @@ public class HelpCommandWindow extends UiPart<Stage> {
         commandUsage.setCellValueFactory(new PropertyValueFactory<>("usage"));
         commandFormat.setCellValueFactory(new PropertyValueFactory<>("format"));
         commandExample.setCellValueFactory(new PropertyValueFactory<>("example"));
-        List<CommandList> listOfCommand = CommandList.getCommandList();
+        List<CommandList> listOfCommand = CommandList.getComandList();
         for (int i = 0; i < listOfCommand.size(); i = i + 1) {
             list.add(listOfCommand.get(i));
         }

@@ -71,7 +71,7 @@ public class AddExpenseCommandTest {
         // null -> returns false
         assertFalse(addAliceExpenseCommand.equals(null));
 
-        // different person -> returns false
+        // different expenses -> returns false
         assertFalse(addAliceExpenseCommand.equals(addBobExpenseCommand));
     }
 

@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExpenseBookParser" as ExpenseBookParser LOGIC_COLOR
+participant ":SetBudgetCommandParser" as SetBudgetCommandParser LOGIC_COLOR
+participant "command :SetBudgetCommand" as SetBudgetCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("set-b 1000")
+activate LogicManager
+
+LogicManager -> ExpenseBookParser : parseCommand("set-b 1000")
+activate ExpenseBookParser
+
+create SetBudgetCommandParser
+ExpenseBookParser -> SetBudgetCommandParser
+activate SetBudgetCommandParser
+
+SetBudgetCommandParser --> ExpenseBookParser
+deactivate SetBudgetCommandParser
+
+ExpenseBookParser -> SetBudgetCommandParser : parse("1000")
+activate SetBudgetCommandParser
+
+create SetBudgetCommand
+SetBudgetCommandParser -> SetBudgetCommand
+activate SetBudgetCommand
+
+SetBudgetCommand --> SetBudgetCommandParser
+deactivate SetBudgetCommand
+
+SetBudgetCommandParser --> ExpenseBookParser
+deactivate SetBudgetCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SetBudgetCommandParser -[hidden]-> ExpenseBookParser
+destroy SetBudgetCommandParser
+
+ExpenseBookParser --> LogicManager
+deactivate ExpenseBookParser
+
+LogicManager -> SetBudgetCommand : execute(model)
+activate SetBudgetCommand
+
+SetBudgetCommand -> Model : setExpenseBookBudget(budget)
+activate Model
+
+Model --> SetBudgetCommand
+deactivate Model
+
+create CommandResult
+SetBudgetCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SetBudgetCommand
+deactivate CommandResult
+
+SetBudgetCommand --> LogicManager : budget, remaining budget
+deactivate SetBudgetCommand
+
+[<--LogicManager : setGuiSettings(model)
+deactivate LogicManager
+@enduml

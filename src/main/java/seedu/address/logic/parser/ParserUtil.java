@@ -12,6 +12,7 @@ import seedu.address.model.expense.Category;
 import seedu.address.model.expense.Currency;
 import seedu.address.model.expense.Date;
 import seedu.address.model.expense.Description;
+import seedu.address.model.expense.Order;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -136,6 +137,9 @@ public class ParserUtil {
     public static Description parseExpenseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
         return new Description(trimmedDescription);
     }
 
@@ -161,12 +165,23 @@ public class ParserUtil {
             double value = Double.parseDouble(budget.trim());
             if (value <= 0) {
                 throw new ParseException(
-                        SetBudgetCommand.MESSAGE_SET_BUDGET_FAIL);
+                    SetBudgetCommand.MESSAGE_SET_BUDGET_FAIL);
             }
             return new Budget(value);
         } catch (Exception pe) {
             throw new ParseException(
                     SetBudgetCommand.MESSAGE_SET_BUDGET_FAIL, pe);
         }
+    }
+
+    /**
+     * Parses a {@code String input} into a {@code Order}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code input} is invalid.
+     */
+    public static Order parseOrder(String input) throws ParseException {
+        String trimmedInput = input.trim();
+        return new Order(trimmedInput);
     }
 }

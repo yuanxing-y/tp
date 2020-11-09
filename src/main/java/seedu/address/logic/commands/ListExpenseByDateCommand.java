@@ -14,10 +14,12 @@ public class ListExpenseByDateCommand extends Command {
 
     public static final String COMMAND_WORD = "filter-t";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filter all expenses with date matches "
-            + "the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: YYYY-MM-DD \n"
-            + "Example: " + COMMAND_WORD + " 2020-10-15";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filter all expenses "
+            + "by specifying YYYY-MM-DD or DAYSAGO"
+            + " and displays them as a list with index numbers.\n"
+            + "Parameters: YYYY-MM-DD or DAYSAGO \n"
+            + "The parameters of DAYSAGO must be at least zero or below 3650(10 years)\n"
+            + "Example: " + COMMAND_WORD + " 2020-10-15 or " + COMMAND_WORD + " 3";
     public static final String MESSAGE_SUCCESS = "Listed all expenses by Date";
 
     private final DateContainsKeywordsPredicate predicate;

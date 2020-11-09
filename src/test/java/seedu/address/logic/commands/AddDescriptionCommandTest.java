@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalExpenses.getTypicalExpenseBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,10 +16,17 @@ import seedu.address.model.expense.Description;
 import seedu.address.testutil.TypicalExpenses;
 import seedu.address.testutil.TypicalIndexes;
 
+
 /**
  * Contains integration tests (interaction with the Model) for {@code AddDescriptionCommand}.
  */
 class AddDescriptionCommandTest {
+    private Model model = new ExpenseModelManager(getTypicalExpenseBook(), new UserPrefs());
+
+    @Test
+    public void constructor_nullIndexDescription_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddDescriptionCommand(null, null));
+    }
 
     @Test
     public void equals() {

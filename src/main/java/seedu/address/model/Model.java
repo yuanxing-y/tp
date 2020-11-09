@@ -95,19 +95,43 @@ public interface Model {
      */
     void updateFilteredExpenseList(Predicate<Expense> predicate);
 
+    /**
+     * @return Budget of the ExpenseBook.
+     */
     Budget getExpenseBookBudget();
 
+    /**
+     * @return Remaining budget of the ExpenseBook.
+     */
     Budget getExpenseBookRemaining();
 
+    /**
+     * @return Total spending of the ExpenseBook.
+     */
     double getExpenseBookSpending();
 
+    /**
+     * Exchange all the expenses of the ExpenseBook at the given ExchangeRate.
+     * @param exchangeRate of a currency.
+     */
     void expenseBookExchange(ExchangeRate exchangeRate);
 
+    /**
+     * Set the budget of the ExpenseBook.
+     * @param budget
+     */
     void setExpenseBookBudget(Budget budget);
 
+    /**
+     * @return the currency of the ExpenseBook.
+     */
     Currency getExpenseBookCurrency();
 
-    void setExpenseBookCurrency(Currency dollarSign);
+    /**
+     * Set the currency of the ExpenseBook into the given currency code.
+     * @param code of the currency.
+     */
+    void setExpenseBookCurrency(Currency code);
 
     /**
      * Get the total spending of all the categories.

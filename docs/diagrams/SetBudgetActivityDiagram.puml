@@ -1,0 +1,25 @@
+@startuml
+start
+:User executes a SetBudget Command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command is valid])
+    :Instantiate an SetBudgetCommand;
+    :Execute SetBudgetCommand;
+    if () then ([the given BUDGET is valid])
+        :Create a new Budget, and set the ExpenseBook's Budget;
+        :Update UI with the current Budget;
+    else ([else])
+        :throw an exception;
+        :update UI to notify user;
+    endif
+    :Save ExpenseBook to
+    expenseBookStateList;
+else ([else])
+    :throw an exception;
+    :update UI to notify user;
+endif
+stop
+@enduml

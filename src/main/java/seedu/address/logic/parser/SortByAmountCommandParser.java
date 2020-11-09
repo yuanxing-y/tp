@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.SortByAmountCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.expense.Order;
 
 /**
  * Parses input arguments and creates a new SortByAmountCommand object
@@ -24,7 +25,9 @@ public class SortByAmountCommandParser implements Parser<SortByAmountCommand> {
         }
         assert !trimmedArgs.isEmpty();
 
-        return new SortByAmountCommand(args);
+        Order order = ParserUtil.parseOrder(trimmedArgs);
+
+        return new SortByAmountCommand(order);
     }
 
 }

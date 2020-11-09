@@ -153,6 +153,12 @@ public class CommandResult {
         return exit;
     }
 
+
+    /**
+     * Checks if two command results are equal.
+     * @param other Another object.
+     * @return Whether the 2 command result objects are equal or not. Return true if they are equal and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {

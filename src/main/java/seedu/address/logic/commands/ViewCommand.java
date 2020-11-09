@@ -1,8 +1,9 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -44,7 +45,8 @@ public class ViewCommand extends Command {
         assert targetIndex.getZeroBased() >= 0 : "index should be a positive number";
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MESSAGE_USAGE));
         }
 
         Expense expenseToView = lastShownList.get(targetIndex.getZeroBased());

@@ -1,0 +1,23 @@
+@startuml
+start
+:Users input an AddExpense command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command is valid, that is all the compulsory fields are present])
+    :Instantiate an AddExpenseCommand;
+    :Execute AddExpenseCommand;
+        if () then ([all fields provided are valid])
+            :Create a new Expense and add it to the expense list;
+            :Update UI with the corresponding expense list;
+        else ([else])
+            :throw an exception;
+            :update UI to notify user;
+        endif
+else ([else])
+    :throw an exception;
+    :update UI to notify user;
+endif
+stop
+@enduml

@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExpenseBookParser" as ExpenseBookParser LOGIC_COLOR
+participant ":ExchangeCommandParser" as ExchangeCommandParser LOGIC_COLOR
+participant "command :ExchangeCommand" as ExchangeCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ExpenseBook" as ExpenseBook MODEL_COLOR
+participant ":ExpenseList" as ExpenseList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("exchange cc/CNY")
+activate LogicManager
+
+LogicManager -> ExpenseBookParser : parseCommand("exchange cc/CNY")
+activate ExpenseBookParser
+
+create ExchangeCommandParser
+ExpenseBookParser -> ExchangeCommandParser
+activate ExchangeCommandParser
+
+ExchangeCommandParser --> ExpenseBookParser
+deactivate ExchangeCommandParser
+
+ExpenseBookParser -> ExchangeCommandParser : parse("CNY")
+activate ExchangeCommandParser
+
+create ExchangeCommand
+ExchangeCommandParser -> ExchangeCommand
+activate ExchangeCommand
+
+ExchangeCommand --> ExchangeCommandParser
+deactivate ExchangeCommand
+
+ExchangeCommandParser --> ExpenseBookParser : command
+deactivate ExchangeCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ExchangeCommandParser -[hidden]-> ExpenseBookParser
+destroy ExchangeCommandParser
+
+ExpenseBookParser --> LogicManager : command
+deactivate ExpenseBookParser
+
+LogicManager -> ExchangeCommand : execute(model)
+activate ExchangeCommand
+
+ExchangeCommand -> Model : exchange(type)
+activate Model
+
+Model -> ExpenseBook : exchange(type)
+activate ExpenseBook
+
+ExpenseBook --> ExpenseList: exchange(type)
+activate ExpenseList
+
+ExpenseList --> ExpenseBook
+deactivate ExpenseList
+
+ExpenseBook --> Model
+deactivate ExpenseBook
+
+Model --> ExchangeCommand
+deactivate Model
+
+create CommandResult
+ExchangeCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ExchangeCommand
+deactivate CommandResult
+
+ExchangeCommand --> LogicManager : result
+deactivate ExchangeCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

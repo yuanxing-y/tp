@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+skinparam BoxPadding 20
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExpenseBookParser" as ExpenseBookParser LOGIC_COLOR
+participant "command:ListExpenseByDescCommand" as ListExpenseByDescCommand LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant "pred:DescContainsKeywordsPredicate" as DescContainsKeywordsPredicate MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+participant "fe:FilteredList" as FilteredList MODEL_COLOR
+end box
+
+[-> MainWindow
+activate MainWindow
+
+MainWindow -> LogicManager : execute("filter-d kfc")
+activate LogicManager
+
+LogicManager -> ExpenseBookParser : parseCommand("filter-d kfc")
+activate ExpenseBookParser
+
+create ListExpenseByDescCommand
+ExpenseBookParser -> ListExpenseByDescCommand : parse("kfc")
+activate ListExpenseByDescCommand
+
+create DescContainsKeywordsPredicate
+ListExpenseByDescCommand -> DescContainsKeywordsPredicate
+activate DescContainsKeywordsPredicate
+
+DescContainsKeywordsPredicate -> ListExpenseByDescCommand : pred
+deactivate DescContainsKeywordsPredicate
+
+ListExpenseByDescCommand --> ExpenseBookParser : command
+deactivate ListExpenseByDescCommand
+
+ExpenseBookParser --> LogicManager : command
+
+LogicManager -> ListExpenseByDescCommand : execute(Model)
+activate ListExpenseByDescCommand
+
+ListExpenseByDescCommand -> Model : updateFilteredExpenseList(pred)
+activate Model
+
+Model -> FilteredList : setPredicate(pred)
+
+Model --> ListExpenseByDescCommand
+deactivate Model
+
+ListExpenseByDescCommand --> LogicManager : result
+deactivate ListExpenseByDescCommand
+ListExpenseByDescCommand -[hidden]-> LogicManager : result
+destroy ListExpenseByDescCommand
+
+MainWindow <--LogicManager : result
+deactivate LogicManager
+
+[<-- MainWindow
+deactivate MainWindow
+
+@enduml

@@ -108,13 +108,13 @@ public class ExpenseList implements Iterable<Expense> {
 
     /**
      * Exchange the {@code expenses} to the input currency.
-     * @param dollarSign of the new currency.
+     * @param code of the new currency.
      * @param exchangeRate from the current currency.
      */
-    public void exchange(Currency dollarSign, ExchangeRate exchangeRate) {
+    public void exchange(Currency code, ExchangeRate exchangeRate) {
         List<Expense> exchangedExpenses = new ArrayList<>();
         for (Expense expense : internalList) {
-            exchangedExpenses.add(expense.exchange(dollarSign, exchangeRate));
+            exchangedExpenses.add(expense.exchange(code, exchangeRate));
         }
         setExpenses(exchangedExpenses);
     }
@@ -305,6 +305,7 @@ public class ExpenseList implements Iterable<Expense> {
      * @return The statistics of this expense book.
      */
     public Statistics getStatistics() {
+        updateStatisticSummary();
         updateStatistics();
         return this.statistics;
     }

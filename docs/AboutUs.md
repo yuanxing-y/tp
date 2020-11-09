@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/tanwayne890.png" width="200px">
 
 [[github](https://github.com/tanwayne890)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/tanwayne890.md)]
 
 * Role: Developer, Deliverables & Deadlines
 * Responsibilities: UI
@@ -34,17 +34,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/yuanxing-y.png" width="200px">
 
 [[github](https://github.com/yuanxing-y)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/yuanxing-y.md)]
 
 * Role: Developer, Documentation & Code Quality
-* Responsibilities: Data, Storage
+* Responsibilities: Model, Logic
 
 ### Yao Yuming
 
 <img src="images/yuming7144.png" width="200px">
 
 [[github](https://github.com/yuming7144)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/yuming7144.md)]
 
 * Role: Developer, Scheduling & Tracking
 * Responsibilities: Dev Ops + Threading
@@ -54,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/yyutong.png" width="200px">
 
 [[github](https://github.com/yyutong)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/yyutong.md)]
 
 * Role: Developer, Team Lead, Integration
 * Responsibilities: UI

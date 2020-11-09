@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExpenseBookParser" as ExpenseBookParser LOGIC_COLOR
+participant ":AddExpenseCommandParser" as AddExpenseCommandParser LOGIC_COLOR
+participant "command :AddExpenseCommand" as AddExpenseCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ExpenseList" as ExpenseList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add a/100 c/food")
+activate LogicManager
+
+LogicManager -> ExpenseBookParser : parseCommand("add a/100 c/food")
+activate ExpenseBookParser
+
+create AddExpenseCommandParser
+ExpenseBookParser -> AddExpenseCommandParser
+activate AddExpenseCommandParser
+
+AddExpenseCommandParser --> ExpenseBookParser
+deactivate AddExpenseCommandParser
+
+ExpenseBookParser -> AddExpenseCommandParser : parse("a/100 c/food")
+activate AddExpenseCommandParser
+
+create AddExpenseCommand
+AddExpenseCommandParser -> AddExpenseCommand
+activate AddExpenseCommand
+
+AddExpenseCommand --> AddExpenseCommandParser
+deactivate AddExpenseCommand
+
+AddExpenseCommandParser --> ExpenseBookParser
+deactivate AddExpenseCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddExpenseCommandParser -[hidden]-> ExpenseBookParser
+destroy AddExpenseCommandParser
+
+ExpenseBookParser --> LogicManager
+deactivate ExpenseBookParser
+
+LogicManager -> AddExpenseCommand : execute(model)
+activate AddExpenseCommand
+
+AddExpenseCommand -> Model : addExpense(expense)
+activate Model
+
+Model --> ExpenseList: add(expense)
+activate ExpenseList
+
+ExpenseList --> Model
+deactivate ExpenseList
+
+
+Model --> AddExpenseCommand
+deactivate Model
+
+create CommandResult
+AddExpenseCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddExpenseCommand
+deactivate CommandResult
+
+AddExpenseCommand --> LogicManager
+deactivate AddExpenseCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

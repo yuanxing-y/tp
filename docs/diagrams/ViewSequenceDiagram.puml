@@ -48,7 +48,7 @@ deactivate ExpenseBookParser
 LogicManager -> ViewCommand : execute()
 activate ViewCommand
 
-ViewCommand -> Model : ViewExpense(1)
+ViewCommand -> Model : getFilteredExpenseList();
 activate Model
 
 Model --> ViewCommand

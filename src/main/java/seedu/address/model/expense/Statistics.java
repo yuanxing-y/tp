@@ -14,8 +14,6 @@ public class Statistics {
 
     private HashMap<String, Double> categoryAmountPercentage;
 
-    //private HashMap<String, Double> categoryNumberPercentage;
-
     private ArrayList<String> categories;
 
     /**
@@ -26,17 +24,7 @@ public class Statistics {
      */
     public Statistics(HashMap<String, Double>categoryAmountPercentage, ArrayList<String> categories) {
         this.categoryAmountPercentage = categoryAmountPercentage;
-        //this.categoryNumberPercentage = categoryNumberPercentage;
         this.categories = categories;
-    }
-
-    /**
-     * Gets the hashmap pf categories and percentages.
-     *
-     * @return The hashmap of categories and percentage.
-     */
-    public HashMap<String, Double> getCategoryAmountPercentage() {
-        return this.categoryAmountPercentage;
     }
 
     /**
@@ -47,15 +35,10 @@ public class Statistics {
     public ObservableList<PieChart.Data> getCategoryAmountPercenatgePieCharStatistics() {
 
         ObservableList<PieChart.Data> list = FXCollections.observableArrayList();
-
         for (String current: categories) {
-
             double percentage = categoryAmountPercentage.get(current);
-
             list.add(new PieChart.Data(current, percentage));
-
         }
-
         return list;
     }
 

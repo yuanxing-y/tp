@@ -1,0 +1,26 @@
+@startuml
+start
+:User executes a SortByAmount Command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command word is a valid SortByAmount command word])
+    :Instantiate an SortByAmountCommand;
+    :Execute SortByAmountCommand;
+    if () then ([the input order is valid])
+        :Create a new Order;
+        :Sort the expense list by amount in the specified order;
+        :Update UI with the updated expense list;
+    else ([else])
+        :throw an exception;
+        :update UI to notify user;
+    endif
+    :Save ExpenseBook to
+    expenseBookStateList;
+else ([else])
+    :throw an exception;
+    :update UI to notify user;
+endif
+stop
+@enduml

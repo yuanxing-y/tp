@@ -41,8 +41,6 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
      * The new ExpenseBook with budget 0 and default Currency SGD.
      */
     public ExpenseBook() {
-        //this.budget = new Budget();
-        //this.currency = new Currency();
     }
 
     /**

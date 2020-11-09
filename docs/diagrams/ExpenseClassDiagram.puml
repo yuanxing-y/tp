@@ -7,7 +7,6 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Class ExpenseBook
 
-
 Package Expense <<Rectangle>>{
 Class Expense
 Class Amount

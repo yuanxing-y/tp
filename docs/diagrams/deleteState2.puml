@@ -3,7 +3,7 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title After command "add a/100 c/Entertainment D/1 d/Movie"
+title After command "add a/100 c/Entertainment t/1 d/Movie"
 
 package States <<rectangle>> {
     class State1 as "__ab0:ExpenseBook__"

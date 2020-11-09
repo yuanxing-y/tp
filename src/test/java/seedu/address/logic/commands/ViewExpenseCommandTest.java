@@ -2,10 +2,10 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.ExpenseModelManager;
 import seedu.address.model.Model;
@@ -51,7 +51,8 @@ public class ViewExpenseCommandTest {
 
         ViewCommand viewCommand = new ViewCommand(outOfBoundIndex);
 
-        CommandTestUtil.assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(viewCommand, model, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ViewCommand.MESSAGE_USAGE));
 
     }
 
@@ -61,7 +62,8 @@ public class ViewExpenseCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredExpenseList().size() + 1);
         ViewCommand viewCommand = new ViewCommand(outOfBoundIndex);
 
-        CommandTestUtil.assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(viewCommand, model, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ViewCommand.MESSAGE_USAGE));
     }
 
 }

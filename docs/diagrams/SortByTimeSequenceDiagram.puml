@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ExpenseBookParser" as ExpenseBookParser LOGIC_COLOR
+participant ":SortByTimeCommandParser" as SortByTimeCommandParser LOGIC_COLOR
+participant "d:SortByTimeCommand" as SortByTimeCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ExpenseBook" as ExpenseBook MODEL_COLOR
+participant ":ExpenseList" as ExpenseList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("sort-t ascending")
+activate LogicManager
+
+LogicManager -> ExpenseBookParser : parseCommand("sort-t ascending")
+activate ExpenseBookParser
+
+create SortByTimeCommandParser
+ExpenseBookParser -> SortByTimeCommandParser
+activate SortByTimeCommandParser
+
+SortByTimeCommandParser --> ExpenseBookParser
+deactivate SortByTimeCommandParser
+
+ExpenseBookParser -> SortByTimeCommandParser : parse("ascending")
+activate SortByTimeCommandParser
+
+create SortByTimeCommand
+SortByTimeCommandParser -> SortByTimeCommand
+activate SortByTimeCommand
+
+SortByTimeCommand --> SortByTimeCommandParser : s
+deactivate SortByTimeCommand
+
+SortByTimeCommandParser --> ExpenseBookParser : s
+deactivate SortByTimeCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortByTimeCommandParser -[hidden]-> ExpenseBookParser
+destroy SortByTimeCommandParser
+
+ExpenseBookParser --> LogicManager : s
+deactivate ExpenseBookParser
+
+LogicManager -> SortByTimeCommand : execute()
+activate SortByTimeCommand
+
+SortByTimeCommand -> Model : sortByAscendingTime()
+activate Model
+
+Model -> ExpenseBook : sortByAscendingTime()
+activate ExpenseBook
+
+ExpenseBook --> ExpenseList: sortByAscendingTime()
+activate ExpenseList
+
+ExpenseList --> ExpenseBook
+deactivate ExpenseList
+
+ExpenseBook --> Model
+deactivate ExpenseBook
+
+Model --> SortByTimeCommand
+deactivate Model
+
+create CommandResult
+SortByTimeCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortByTimeCommand
+deactivate CommandResult
+
+SortByTimeCommand --> LogicManager : result
+deactivate SortByTimeCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
