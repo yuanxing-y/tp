@@ -51,7 +51,7 @@ Moreover, UniSave allows tracking expenses in different currencies.
 UniSave targets university students who tend to incur a large amount of spending, 
 including tuition fees, housing fees, transport and so on. 
 It is catered especially for students who are more familiar with desktop applications and type fast.
-UniSave is available for the Linux, Windows and Mac OS operating systems.
+UniSave is available for the **Linux, Windows and Mac OS** operating systems.
 
 ## 2. Quick start
 
@@ -156,13 +156,14 @@ eg. `d/` is not the same as `D/`.
 
 #### 3.1 Clear data in UniSave : `clear`
 
-Clear all the data in the program. 
-
 You can use this command to clear the sample data when you first launch the app, or use it whenever you want to start a new expense book. <br>
-Note that budget will be cleared when you use this command.
+
+**Note** : **Budget** will be cleared when you use this command.
 
 Format: `clear`
-Example: `clear`
+
+Example: 
+* `clear`: Clear all data in UniSave.
 
 Navigate back to the feature list: [Features](#3-features)
 
@@ -174,33 +175,37 @@ When total spending exceed the budget, UniSave will remind you to set a new budg
 Format: `set-b BUDGET`
 
 Example:
-`set-b 500`: Set the budget to 500.
+* `set-b 500`: Set the budget to 500.
 
 ![setBudget](images/setBudgetCommand.png)
 
 **Note** :
-1. You can change the Currency before setting budget with command <b>exchange cc/CURRENCY_CODE</b>, so that you can set your budget in another currency.
-to see a full list of supported currencies with their currency codes use command <b>show-codes</b>.
+1. You can change the Currency before setting budget with command `exchange cc/CURRENCY_CODE`, so that you can set your budget in another currency.
+to see a full list of supported currencies with their currency codes use command `show-codes`.
 2. Budget should only be positive numbers.
 
 Navigate back to the feature list: [Features](#3-features)
 
 #### 3.3 Add an expense: `add`
 
-Adds an expense.
+Save an new expense to UniSave.
 
 Format: `add a/AMOUNT c/CATEGORY [t/DATE] [d/description]`
 
 **Note** :
-1. The amount of an expense should only be positive numbers. <br>
-2. If you do, a date can be entered in one of these two forms:<br>
-  i) Enter date as a single integer, corresponding to number of days ago. <br>
-  E.g: 1 means you made the expenses one day ago. (Note that when date is given as a single integer,
+1. The amount of an expense should only be **positive numbers**. <br>
+2. Date can be entered in one of these two forms:<br>
+  i) Enter date as a **single integer**, corresponding to number of days ago. <br>
+  E.g: 1 means you made the expenses one day ago. <br>
+  (Note that when date is given as a single integer,
   it should not be less than 0 or greater than 3650.) <br>
-  ii) Enter date as the exact date in YYYY-MM-DD format. E.g: 2020-10-28<br>
-3.The date and field are optional but amount and category are compulsory. <br>
-4. when more than one same field is entered, the last one is chosen. For example, there are t/2 and t/3 being entered, t/3 will be chosen. <br>
-5. When the date field is left empty, the default is today. When description field is left empty, the default is no description. <br>
+  ii) Enter date as the exact date in **YYYY-MM-DD** format. <br>
+  E.g: 2020-10-28 <br>
+3. The date and field are optional but amount and category are compulsory. <br>
+4. When the same field is entered more than once, the last one is chosen. <br>
+E.g. There are t/2 and t/3 being entered, t/3 will be chosen. <br>
+5. When the date field is left empty, the default is today. <br>
+When description field is left empty, the default is no description. <br>
 6. You may enter each field in a different order. That means `add a/100 c/food t/1 d/milk tea membership card` gives the 
    same result as `add t/1 d/milk tea membership card c/food a/100`. <br>
 
@@ -215,30 +220,31 @@ Navigate back to the feature list: [Features](#3-features)
 
 #### 3.4 Edit an expense : `edit`
 
-Edit an expense.
+Edits the expense at the specified INDEX.
 
 Format: `edit INDEX [a/AMOUNT] [c/CATEGORY] [t/DATE] [d/DESCRIPTION]`
 
-* Edits the expense at the specified INDEX.
-* The index refers to the index number shown in the expense list.
-* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
-* If no field is provided, no change will be done.
+**Note** :
+1. The INDEX refers to the index number shown in the expense list.
+2. The INDEX **must be a positive integer greater than 0**. eg. 1, 2, 3, …
+3. If no field is provided, no change will be done.
 
 Examples:
-* `edit 1 a/10.2`
+* `edit 1 a/10.2`: Edit amount of the first expense to 10.2.
+
 ![Edit](images/EditCommand.png)
 
 Navigate back to the feature list: [Features](#3-features)
 
 #### 3.5 Delete an expense: `delete`
 
-Deletes an expense.
+Deletes the expense at the specified `INDEX`.
 
 Format: `delete INDEX`
 
-* Deletes the expense at the specified `INDEX`.
-* The index refers to the index number shown in the expense list.
-* The index **must be a positive integer** 1, 2, 3, …
+**Note** :
+1. The INDEX refers to the index number shown in the expense list.
+2. The INDEX **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd expense in the expense list.
@@ -253,11 +259,9 @@ View an expense in the expense list.
 
 Format: `view INDEX`
 
-View the expense at the specified INDEX.
-
-The index refers to the index number shown in the displayed expense list.
-
-* The index must be a **positive integer** 1, 2, 3, …
+**Note** :
+1. The INDEX refers to the index number shown in the displayed expense list.
+2. The INDEX must be a **positive integer** 1, 2, 3, …
 
 Examples:
 * `view 3` views the `amount, category, date and description` of the third expense displayed in the list.
@@ -273,7 +277,7 @@ Show all existing categories in the expense list. Note that a category is added 
 Format: `view-c`
 
 Examples:
-* `view-c`
+* `view-c`: View all types of categories saved for expenses.
 
 ![viewCategory](images/viewCategoryCommand.png)
 
@@ -290,6 +294,7 @@ field as "d/" or "d/  " (with blanks only), then the existing description will b
 Format: `add-d INDEX d/DESCRIPTION`
 * Add description field to the expense at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed expense list. The index **must be a positive integer** 1, 2, 3, …​
 * Existing description will be overwrote to the new description.
+
 Examples:
 * `add-d 3 d/movies`: Add the description field `movies` to the 3rd expense.
 
@@ -301,13 +306,14 @@ Navigate back to the feature list: [Features](#3-features)
 #### 3.9 Delete description of expense: `delete-d`
 Delete the description field of an existing expense.
 
-**Note** :
-The description field of the specified expense will still exist, just that it will be empty.
-
 Format: `delete-d INDEX`
 * Deletes the description of the expense at the specified INDEX.
 * The `INDEX` refers to the index number shown in the expense list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
+
+**Note** : 
+* The description field of the specified expense will still exist, just that it will be empty.
+
 Examples:
 `delete-d 6` Deletes the description field of the 6th expense.
 
@@ -327,7 +333,7 @@ Show all the expenses whose category match the specified category.
 Format: `filter-c CATEGORY`
 
 Examples:
-* `filter-c entertainment`: filter all the expenses under category `entertainment`.
+* `filter-c entertainment`: Filter all the expenses under category `entertainment`.
 
 ![filter-c](images/listByCategoryCommand.png)
 
@@ -339,9 +345,9 @@ Show all the expenses whose date match the specified date.
 
 Format: `filter-t YYYY-MM-DD` or `filter-t NUMBEROFDAYSAGO`
 
-NUMBEROFDAYSAGO is used to specify how many days ago from current day.
-It accepts number from 0 to 3650 (10 years).
-
+**Note** :
+1. NUMBEROFDAYSAGO is used to specify how many days ago from current day.
+2. It accepts number from 0 to 3650 (10 years).
 
 Examples:
 * `filter-t 3`: filter all the expenses that are saved on 3 days ago from current day.
@@ -357,7 +363,8 @@ Show all the expenses whose description contains the specified description.
 
 Format: `filter-d DESCRIPTION`
 
-Multiple description input is allowed.
+**Note** : 
+* Multiple description input is allowed.
 
 Examples:
 * `filter-d movie`: filter all the expenses which description has the keyword `movie`.
@@ -384,11 +391,16 @@ Navigate back to the feature list: [Features](#3-features)
 Sort the expense(s) based on the input command.
 
 ##### 3.12.1 Sort expenses by the amount of each expense: `sort-a`
+
 Sort the expenses in specified order.
 
-Format: `sort-a ascending`
-        `sort-descending`
-* Note that only ascending or descending order is valid.
+
+Format: `sort-a descending`
+        `sort-a ascending`
+
+**Note** : 
+* Only ascending or descending order is valid.
+
 
 Examples:
 * `sort-a ascending`: sort the expenses according to amount in ascending order.
@@ -399,11 +411,14 @@ Navigate back to the feature list: [Features](#3-features)
 
 
 ##### 3.12.2 Sort expenses by the date of each expense: `sort-t`
+
 Sort the expenses according to date in specified order. 
 
 Format: `sort-t ascending`
         `sort-t descending`
-* Note that only ascending or descending order is valid.
+
+**Note** : 
+* Only ascending or descending order is valid.
 
 Examples:
 * `sort-t ascending`: sort the expenses according to date in ascending order (i.e. from past to present.).
@@ -413,23 +428,24 @@ Examples:
 Navigate back to the feature list: [Features](#3-features)
 
 #### 3.13 Exchange Currency : `exchange`
+
 Convert the currency of UniSave from current currency to the input currency of the currency code, 
-note that the currency code is case-insensitive.
 
-Note that the currency code is case-insensitive. <b>cny</b> is the same as <b>CNY</b>.
-
-Use command <b>show-codes</b> to see a full list of currency codes supported by UniSave.
-
+**Note** :
+1. Currency code is case-insensitive. 
+E.g. <b>cny</b> is the same as <b>CNY</b>.
+2. Use command <b>show-codes</b> to see a full list of currency codes supported by UniSave.
 
 Format: `exchange cc/CURRENCY_CODE`
 
-Example: `exchange cc/CNY`
+Example: `exchange cc/CNY`: Change UniSave's current currency to CNY currency.
 
 ![exchange_after](images/ExchangeCommand-after.png)
 
 Navigate back to the feature list: [Features](#3-features)
 
 #### 3.14 Show Currency Codes: `show-codes`
+
 Show a full list of supported currencies with their corresponding currency codes.
 
 Format: `show-codes`
@@ -439,6 +455,7 @@ Format: `show-codes`
 Navigate back to the feature list: [Features](#3-features)
 
 #### 3.15 Show Exchange Rates: `show-rates`
+
 Show a full list of exchange rates adapted by UniSave. 
 Note that the exchange rates were last updated at 2020-10-31 from currency-layer website, 
 there may be a slight inaccuracy compared to current exchange rates.
@@ -450,6 +467,7 @@ Format: `show-rates`
 Navigate back to the feature list: [Features](#3-features)
 
 #### 3.16 Show Statistics: `show-stats`
+
 Show a statistic overview of the expenses, 
 such as the total number of expenses as well as the total spending in each category.
 
@@ -490,6 +508,7 @@ Navigate back to the feature list: [Features](#3-features)
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. FAQ(Frequently Asked Question)
+
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it 
 creates with the file that contains the data of your previous UniSave home folder. <br>
