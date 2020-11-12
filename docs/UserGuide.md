@@ -39,8 +39,8 @@ Choose a section from the table of contents below and start using UniSave.
     * [4. FAQ(Frequently Asked Question)](#4-faqfrequently-asked-question)
     * [5. Glossary](#5-glossary)
     * [6. Command Summary](#6-command-summary)
-
-
+    
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Overview
 UniSave is your desktop finance manager. 
@@ -88,7 +88,7 @@ In a few seconds, you should see a GUI similar to the diagram below. Note the ap
    * **`exit`** : Exits the app.
 
 6. Refer to the [Features](#3-features) below for details of each command.
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Features
@@ -116,6 +116,8 @@ In a few seconds, you should see a GUI similar to the diagram below. Note the ap
 * [3.17 View help: `help`](#317--view-help-help)
 * [3.18 Exiting the program : `exit`](#318-exit-the-program--exit)
 * [3.19 Saving the data](#319-saving-the-data)
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -150,13 +152,13 @@ eg. `d/` is not the same as `D/`.
 * Pop up windows for <b>help</b>, <b>show-stats</b>, <b>show-rates</b>, <b>show-codes</b> commands can be closed with keyboard shortcut "<b>q</b>".
 </div>
 
-
+<div style="page-break-after: always;"></div>
 
 ### Commands  <a name="commands"></a>
 
 #### 3.1 Clear data in UniSave : `clear`
 
-You can use this command to clear the sample data when you first launch the app, or use it whenever you want to start a new expense book. <br>
+You can use this command to clear the sample data when you first launch the app, or use it whenever you want to start a new expense book. 
 
 **Note** : **Budget** will be cleared when you use this command.
 
@@ -186,9 +188,11 @@ to see a full list of supported currencies with their currency codes use command
 
 Navigate back to the feature list: [Features](#3-features)
 
+<div style="page-break-after: always;"></div>
+
 #### 3.3 Add an expense: `add`
 
-Save an new expense to UniSave.
+Add a new expense to UniSave.
 
 Format: `add a/AMOUNT c/CATEGORY [t/DATE] [d/description]`
 
@@ -218,9 +222,11 @@ Examples:
 
 Navigate back to the feature list: [Features](#3-features)
 
+<div style="page-break-after: always;"></div>
+
 #### 3.4 Edit an expense : `edit`
 
-Edits the expense at the specified INDEX.
+Edit the expense at the specified INDEX.
 
 Format: `edit INDEX [a/AMOUNT] [c/CATEGORY] [t/DATE] [d/DESCRIPTION]`
 
@@ -235,6 +241,8 @@ Examples:
 ![Edit](images/EditCommand.png)
 
 Navigate back to the feature list: [Features](#3-features)
+
+<div style="page-break-after: always;"></div>
 
 #### 3.5 Delete an expense: `delete`
 
@@ -253,6 +261,8 @@ Examples:
 
 Navigate back to the feature list: [Features](#3-features)
 
+<div style="page-break-after: always;"></div>
+
 #### 3.6 View an expense : `view`
 
 View an expense in the expense list.
@@ -270,6 +280,8 @@ Examples:
 
 Navigate back to the feature list: [Features](#3-features)
 
+<div style="page-break-after: always;"></div>
+
 #### 3.7 View categories : `view-c`
 
 Show all existing categories in the expense list. Note that a category is added automatically when you add an expense.
@@ -281,6 +293,9 @@ Examples:
 
 ![viewCategory](images/viewCategoryCommand.png)
 
+Navigate back to the feature list: [Features](#3-features)
+
+<div style="page-break-after: always;"></div>
 
 #### 3.8 Add description to expense : `add-d`
 
@@ -302,6 +317,7 @@ Examples:
 
 Navigate back to the feature list: [Features](#3-features)
 
+<div style="page-break-after: always;"></div>
 
 #### 3.9 Delete description of expense: `delete-d`
 Delete the description field of an existing expense.
@@ -321,6 +337,7 @@ Examples:
 
 Navigate back to the feature list: [Features](#3-features)
 
+<div style="page-break-after: always;"></div>
 
 #### 3.10 Filter Expenses
 
@@ -373,6 +390,8 @@ Examples:
 
 Navigate back to the feature list: [Features](#3-features)
 
+<div style="page-break-after: always;"></div>
+
 #### 3.11 List all expenses : `list`
 
 You can list out all the expenses stored in UniSave.
@@ -385,6 +404,8 @@ Examples:
 ![list](images/listCommand.png)
 
 Navigate back to the feature list: [Features](#3-features)
+
+<div style="page-break-after: always;"></div>
 
 #### 3.12 Sort the expenses
 
@@ -427,6 +448,8 @@ Examples:
 
 Navigate back to the feature list: [Features](#3-features)
 
+<div style="page-break-after: always;"></div>
+
 #### 3.13 Exchange Currency : `exchange`
 
 Convert the currency of UniSave from current currency to the input currency of the currency code, 
@@ -444,6 +467,8 @@ Example: `exchange cc/CNY`: Change UniSave's current currency to CNY currency.
 
 Navigate back to the feature list: [Features](#3-features)
 
+<div style="page-break-after: always;"></div>
+
 #### 3.14 Show Currency Codes: `show-codes`
 
 Show a full list of supported currencies with their corresponding currency codes.
@@ -453,6 +478,8 @@ Format: `show-codes`
 ![currency_codes](images/CurrencyCodes.png)
 
 Navigate back to the feature list: [Features](#3-features)
+
+<div style="page-break-after: always;"></div>
 
 #### 3.15 Show Exchange Rates: `show-rates`
 
@@ -465,6 +492,8 @@ Format: `show-rates`
 ![exchange_rates](images/ExchangeRates.png)
 
 Navigate back to the feature list: [Features](#3-features)
+
+<div style="page-break-after: always;"></div>
 
 #### 3.16 Show Statistics: `show-stats`
 
@@ -482,6 +511,8 @@ Examples: `show-stats`
 
 Navigate back to the feature list: [Features](#3-features)
 
+<div style="page-break-after: always;"></div>
+
 #### 3.17 : View help: `help`
 
 Opens a window with a link that directs you to our user guide, and a table shows all the commands of UniSave.
@@ -489,6 +520,8 @@ Opens a window with a link that directs you to our user guide, and a table shows
 Format: `help`
 
 Navigate back to the feature list: [Features](#3-features)
+
+<div style="page-break-after: always;"></div>
 
 #### 3.18 Exit the program : `exit`
 
@@ -504,6 +537,8 @@ UniSave data are saved in the hard disk automatically after any command that cha
 There is no need to save manually.
 
 Navigate back to the feature list: [Features](#3-features)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -522,6 +557,8 @@ Term | Explanation
 **Expense** | An expense consists of an amount spent in some currency, the date on which you spend the money, a category that you classify this spending into, and a description so that you can recall the details when you view this spending again later.
 **CLI** | A command-line interface (CLI) processes commands to a computer program in the form of lines of text.
 **GUI** | The graphical user interface is a form of user interface that allows users to interact with a computer program through graphical icons instead of text-based user interfaces or text navigation.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
