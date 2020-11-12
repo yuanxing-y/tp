@@ -387,7 +387,7 @@ through all of them might reduce the speed of processing the edit command.
 
 #### Implementation
 
-The delete mechanism extends `ExpenseBook` and stored internally as an `ExpenseBookStateList` and `currentStatePointer`.
+The delete mechanism extends `ExpenseBook` and stored internally as an `expenseBookStateList` and `currentStatePointer`.
 
 Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
@@ -399,7 +399,7 @@ Step 2. The user executes `delete 5` command to delete the 5th expenses in the e
 
 ![UndoRedoState1](images/deleteState1.png)
 
-Step 3. The user executes `add a/100 c/Entertainment t/1 d/Movie` to add a new expense. The `add` command also calls `Model#saveAddressBook()`, causing another modified expense book state to be saved into the `expenseBookStateList`.
+Step 3. The user executes `add a/100 c/Entertainment t/1 d/Movie` to add a new expense. The `add` command also calls `Model#saveExpenseBook()`, causing another modified expense book state to be saved into the `expenseBookStateList`.
 
 ![UndoRedoState2](images/deleteState2.png)
 
